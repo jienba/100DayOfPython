@@ -1,6 +1,7 @@
 import random
+import turtle
 from turtle import Turtle, Screen
-import random as r
+import random
 import heroes
 
 jack = Turtle()
@@ -18,7 +19,8 @@ jack = Turtle()
 #     jack.forward(20)
 #     jack.pendown()
 screen = Screen()
-screen.colormode(255)
+# screen.colormode(255)
+turtle.colormode(255)
 
 
 # Challenge 3
@@ -27,12 +29,23 @@ screen.colormode(255)
 # jack.speed(1)
 #
 #
+# My own
+# def random_color():
+#     color = r.randint(0, 255)
+#     return color
+
+# Angela version
+
 def random_color():
-    color = r.randint(0, 255)
+    r = random.randint(0, 255)
+    g = random.randint(0, 255)
+    b = random.randint(0, 255)
+    color = (r, g, b)
     return color
 
 
-#
+print(random_color())
+# Challenge 3
 #
 # for i in range(3, 10):
 #     R = random_color()
@@ -45,16 +58,25 @@ def random_color():
 
 
 # Challenge 4
-directions = [0, 90, 180, 270]
-jack.pensize(15)
+# directions = [0, 90, 180, 270]
+# jack.pensize(15)
+# jack.speed("fastest")
+#
+# for _ in range(500):
+#     jack.color(random_color())
+#     jack.setheading(random.choice(directions))
+#     jack.fd(25)
+jack.pensize(3)
 jack.speed("fastest")
 
-for _ in range(1500):
-    R = random_color()
-    G = random_color()
-    B = random_color()
-    jack.color(R, G, B)
-    jack.setheading(random.choice(directions))
-    jack.fd(25)
 
+def draw_spirograph(angle, circle_radius):
+    number_of_tours = int(360 / angle)
+    for _ in range(number_of_tours):
+        jack.color(random_color())
+        jack.circle(circle_radius)
+        jack.left(angle)
+
+
+draw_spirograph(10, 100)
 screen.exitonclick()
